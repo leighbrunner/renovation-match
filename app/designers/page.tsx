@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import { Header } from '../components/Header'
 
 interface Designer {
   id: string
@@ -61,35 +62,15 @@ export default function DesignersPage() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-50">
-      {/* Header */}
-      <header className="bg-white shadow-sm">
-        <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <div className="flex justify-between items-center">
-            <Link href="/" className="text-2xl font-bold text-slate-900">
-              RenovateMatch
-            </Link>
-            <div className="flex gap-4">
-              <Link href="/auth/login" className="text-slate-600 hover:text-slate-900">
-                Login
-              </Link>
-              <Link
-                href="/auth/register"
-                className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
-              >
-                Get Started
-              </Link>
-            </div>
-          </div>
-        </nav>
-      </header>
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-900">
+      <Header />
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <h1 className="text-4xl font-bold text-slate-900 mb-8">Find Your Designer</h1>
+        <h1 className="text-4xl font-bold text-slate-900 dark:text-white mb-8">Find Your Designer</h1>
 
         {/* Filters */}
-        <div className="bg-white p-6 rounded-lg shadow-md mb-8">
-          <h2 className="text-lg font-semibold mb-4">Filter Designers</h2>
+        <div className="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-md mb-8 border border-slate-200 dark:border-slate-700">
+          <h2 className="text-lg font-semibold mb-4 dark:text-white">Filter Designers</h2>
           <div className="grid md:grid-cols-4 gap-4">
             <input
               type="text"
@@ -97,7 +78,7 @@ export default function DesignersPage() {
               placeholder="Location"
               value={filters.location}
               onChange={handleFilterChange}
-              className="border border-slate-300 rounded-lg px-4 py-2"
+              className="border border-slate-300 dark:border-slate-600 dark:bg-slate-700 dark:text-white rounded-lg px-4 py-2"
             />
             <input
               type="text"
@@ -105,13 +86,13 @@ export default function DesignersPage() {
               placeholder="Specialty (e.g., Modern)"
               value={filters.specialty}
               onChange={handleFilterChange}
-              className="border border-slate-300 rounded-lg px-4 py-2"
+              className="border border-slate-300 dark:border-slate-600 dark:bg-slate-700 dark:text-white rounded-lg px-4 py-2"
             />
             <select
               name="minRating"
               value={filters.minRating}
               onChange={handleFilterChange}
-              className="border border-slate-300 rounded-lg px-4 py-2"
+              className="border border-slate-300 dark:border-slate-600 dark:bg-slate-700 dark:text-white rounded-lg px-4 py-2"
             >
               <option value="">Any Rating</option>
               <option value="3">3+ Stars</option>
@@ -120,7 +101,7 @@ export default function DesignersPage() {
             </select>
             <button
               onClick={applyFilters}
-              className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700"
+              className="bg-blue-600 dark:bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-700 dark:hover:bg-blue-600"
             >
               Apply Filters
             </button>
@@ -130,44 +111,44 @@ export default function DesignersPage() {
         {/* Designers List */}
         {loading ? (
           <div className="text-center py-12">
-            <p className="text-slate-600">Loading designers...</p>
+            <p className="text-slate-600 dark:text-slate-400">Loading designers...</p>
           </div>
         ) : designers.length === 0 ? (
-          <div className="text-center py-12 bg-white rounded-lg shadow-md">
-            <p className="text-slate-600">No designers found. Try adjusting your filters.</p>
+          <div className="text-center py-12 bg-white dark:bg-slate-800 rounded-lg shadow-md border border-slate-200 dark:border-slate-700">
+            <p className="text-slate-600 dark:text-slate-400">No designers found. Try adjusting your filters.</p>
           </div>
         ) : (
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {designers.map((designer) => (
-              <div key={designer.id} className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition">
+              <div key={designer.id} className="bg-white dark:bg-slate-800 rounded-lg shadow-md p-6 hover:shadow-lg transition border border-slate-200 dark:border-slate-700">
                 <div className="flex items-start justify-between mb-4">
                   <div>
-                    <h3 className="text-xl font-bold text-slate-900">
+                    <h3 className="text-xl font-bold text-slate-900 dark:text-white">
                       {designer.user.name}
                       {designer.verified && (
-                        <span className="ml-2 text-blue-600">✓</span>
+                        <span className="ml-2 text-blue-600 dark:text-blue-400">✓</span>
                       )}
                     </h3>
-                    <p className="text-slate-600 text-sm">{designer.location}</p>
+                    <p className="text-slate-600 dark:text-slate-400 text-sm">{designer.location}</p>
                   </div>
                   <div className="text-right">
                     <div className="flex items-center">
                       <span className="text-yellow-500 mr-1">★</span>
-                      <span className="font-semibold">{designer.rating.toFixed(1)}</span>
+                      <span className="font-semibold dark:text-white">{designer.rating.toFixed(1)}</span>
                     </div>
-                    <p className="text-slate-500 text-xs">({designer.reviewCount} reviews)</p>
+                    <p className="text-slate-500 dark:text-slate-400 text-xs">({designer.reviewCount} reviews)</p>
                   </div>
                 </div>
 
-                <p className="text-slate-700 mb-4 line-clamp-3">{designer.bio}</p>
+                <p className="text-slate-700 dark:text-slate-300 mb-4 line-clamp-3">{designer.bio}</p>
 
                 <div className="mb-4">
-                  <p className="text-sm font-semibold text-slate-900 mb-2">Specialties:</p>
+                  <p className="text-sm font-semibold text-slate-900 dark:text-white mb-2">Specialties:</p>
                   <div className="flex flex-wrap gap-2">
                     {designer.specialties.map((specialty, index) => (
                       <span
                         key={index}
-                        className="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full"
+                        className="bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 text-xs px-3 py-1 rounded-full"
                       >
                         {specialty}
                       </span>
@@ -175,13 +156,13 @@ export default function DesignersPage() {
                   </div>
                 </div>
 
-                <div className="text-sm text-slate-600 mb-4">
+                <div className="text-sm text-slate-600 dark:text-slate-400 mb-4">
                   <span className="font-semibold">{designer.yearsExperience}</span> years experience
                 </div>
 
                 {designer.packages.length > 0 && (
                   <div className="mb-4">
-                    <p className="text-sm font-semibold text-slate-900 mb-1">
+                    <p className="text-sm font-semibold text-slate-900 dark:text-white mb-1">
                       Starting at ${Math.min(...designer.packages.map((p: any) => p.price))}
                     </p>
                   </div>
@@ -189,7 +170,7 @@ export default function DesignersPage() {
 
                 <Link
                   href={`/designers/${designer.id}`}
-                  className="block w-full text-center bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition"
+                  className="block w-full text-center bg-blue-600 dark:bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-700 dark:hover:bg-blue-600 transition"
                 >
                   View Profile
                 </Link>
