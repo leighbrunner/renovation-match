@@ -1,0 +1,183 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum UserRole {
+  CLIENT
+  DESIGNER
+}
+
+enum PackageType {
+  CONSULTATION
+  DESIGN_PACKAGE
+  FULL_SERVICE
+}
+
+enum ProjectStatus {
+  PENDING
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
+}
+
+enum RoomType {
+  BATHROOM
+  KITCHEN
+  BEDROOM
+  LIVING_ROOM
+  DINING_ROOM
+  HOME_OFFICE
+  OTHER
+}
+
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  name          String
+  password      String
+  role          UserRole
+  avatar        String?
+  phone         String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  // Relations
+  designerProfile DesignerProfile?
+  clientProjects  Project[]       @relation("ClientProjects")
+  designerProjects Project[]      @relation("DesignerProjects")
+  sentMessages    Message[]       @relation("SentMessages")
+  receivedMessages Message[]      @relation("ReceivedMessages")
+  reviewsGiven    Review[]        @relation("ReviewsGiven")
+  reviewsReceived Review[]        @relation("ReviewsReceived")
+  payments        Payment[]
+}
+
+model DesignerProfile {
+  id            String    @id @default(cuid())
+  userId        String    @unique
+  user          User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  bio           String
+  specialties   String[]  // e.g., ["Modern", "Minimalist", "Traditional"]
+  yearsExperience Int
+  location      String
+  portfolio     Json[]    // Array of portfolio items {imageUrl, title, description}
+  hourlyRate    Float?
+  rating        Float     @default(0)
+  reviewCount   Int       @default(0)
+  verified      Boolean   @default(false)
+
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  // Relations
+  packages      Package[]
+}
+
+model Package {
+  id            String      @id @default(cuid())
+  designerId    String
+  designer      DesignerProfile @relation(fields: [designerId], references: [id], onDelete: Cascade)
+
+  type          PackageType
+  name          String
+  description   String
+  price         Float
+  features      String[]    // List of included features
+  deliveryDays  Int         // Estimated delivery time in days
+  active        Boolean     @default(true)
+
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+
+  // Relations
+  projects      Project[]
+}
+
+model Project {
+  id            String        @id @default(cuid())
+  clientId      String
+  client        User          @relation("ClientProjects", fields: [clientId], references: [id])
+  designerId    String
+  designer      User          @relation("DesignerProjects", fields: [designerId], references: [id])
+  packageId     String
+  package       Package       @relation(fields: [packageId], references: [id])
+
+  title         String
+  description   String
+  roomType      RoomType
+  budget        Float
+  status        ProjectStatus @default(PENDING)
+  startDate     DateTime?
+  completionDate DateTime?
+
+  requirements  Json?         // Detailed requirements from client
+  deliverables  Json[]        // Design files, specs, etc.
+
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+
+  // Relations
+  messages      Message[]
+  payments      Payment[]
+  review        Review?
+}
+
+model Message {
+  id            String    @id @default(cuid())
+  projectId     String
+  project       Project   @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  senderId      String
+  sender        User      @relation("SentMessages", fields: [senderId], references: [id])
+  receiverId    String
+  receiver      User      @relation("ReceivedMessages", fields: [receiverId], references: [id])
+
+  content       String
+  attachments   String[]  // URLs to attached files
+  read          Boolean   @default(false)
+
+  createdAt     DateTime  @default(now())
+}
+
+model Review {
+  id            String    @id @default(cuid())
+  projectId     String    @unique
+  project       Project   @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  reviewerId    String
+  reviewer      User      @relation("ReviewsGiven", fields: [reviewerId], references: [id])
+  designerId    String
+  designer      User      @relation("ReviewsReceived", fields: [designerId], references: [id])
+
+  rating        Int       // 1-5 stars
+  comment       String?
+
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+model Payment {
+  id            String    @id @default(cuid())
+  projectId     String
+  project       Project   @relation(fields: [projectId], references: [id])
+
+  userId        String
+  user          User      @relation(fields: [userId], references: [id])
+
+  amount        Float
+  currency      String    @default("usd")
+  status        String    // succeeded, pending, failed
+  stripePaymentId String?
+
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
