@@ -19,7 +19,7 @@ interface Designer {
     email: string
     avatar: string | null
   }
-  packages: any[]
+  packages: { id: string; price: number }[]
 }
 
 export default function DesignersPage() {
@@ -30,10 +30,6 @@ export default function DesignersPage() {
     specialty: '',
     minRating: '',
   })
-
-  useEffect(() => {
-    fetchDesigners()
-  }, [fetchDesigners])
 
   const fetchDesigners = React.useCallback(async () => {
     try {
@@ -51,6 +47,10 @@ export default function DesignersPage() {
       setLoading(false)
     }
   }, [filters])
+
+  useEffect(() => {
+    fetchDesigners()
+  }, [fetchDesigners])
 
   const handleFilterChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setFilters({ ...filters, [e.target.name]: e.target.value })
@@ -121,7 +121,6 @@ export default function DesignersPage() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {designers.map((designer) => (
               <div key={designer.id} className="bg-white dark:bg-slate-800 rounded-lg shadow-md p-6 hover:shadow-lg transition border border-slate-200 dark:border-slate-700">
-                {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
                 <div className="flex items-start justify-between mb-4">
                   <div>
                     <h3 className="text-xl font-bold text-slate-900 dark:text-white">
@@ -164,7 +163,7 @@ export default function DesignersPage() {
                 {designer.packages.length > 0 && (
                   <div className="mb-4">
                     <p className="text-sm font-semibold text-slate-900 dark:text-white mb-1">
-                      Starting at ${Math.min(...designer.packages.map((p: any) => p.price))}
+                      Starting at ${Math.min(...designer.packages.map(p => p.price))}
                     </p>
                   </div>
                 )}

@@ -4,11 +4,12 @@ import { prisma } from '@/lib/prisma'
 // GET single designer by ID
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params
     const designer = await prisma.designerProfile.findUnique({
-      where: { id: params.id },
+      where: { id },
       include: {
         user: {
           select: {
@@ -45,13 +46,14 @@ export async function GET(
 // PATCH update designer profile
 export async function PATCH(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params
     const body = await request.json()
 
     const updatedDesigner = await prisma.designerProfile.update({
-      where: { id: params.id },
+      where: { id },
       data: body,
       include: {
         user: {

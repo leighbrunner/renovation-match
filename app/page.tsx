@@ -205,7 +205,7 @@ export default function Home() {
             <div className="text-4xl mb-4">💸</div>
             <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-white">Transparent Pricing</h3>
             <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-              <span className="font-semibold">Know exactly what you're paying.</span> From $150 consultations
+              <span className="font-semibold">Know exactly what you&apos;re paying.</span> From $150 consultations
               to full-service packages—no hidden fees, no surprises.
             </p>
           </div>
@@ -273,7 +273,7 @@ export default function Home() {
             Choose Your Service Level
           </h3>
           <p className="text-center text-slate-600 dark:text-slate-400 mb-12 text-lg">
-            From quick guidance to complete project management—we've got you covered
+            From quick guidance to complete project management—we&apos;ve got you covered
           </p>
           <div className="grid md:grid-cols-3 gap-8">
             {/* Consultation Package */}
