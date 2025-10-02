@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { Header } from '../components/Header'
 
@@ -33,9 +33,9 @@ export default function DesignersPage() {
 
   useEffect(() => {
     fetchDesigners()
-  }, [])
+  }, [fetchDesigners])
 
-  const fetchDesigners = async () => {
+  const fetchDesigners = React.useCallback(async () => {
     try {
       const params = new URLSearchParams()
       if (filters.location) params.append('location', filters.location)
@@ -50,7 +50,7 @@ export default function DesignersPage() {
     } finally {
       setLoading(false)
     }
-  }
+  }, [filters])
 
   const handleFilterChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setFilters({ ...filters, [e.target.name]: e.target.value })
@@ -121,6 +121,7 @@ export default function DesignersPage() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {designers.map((designer) => (
               <div key={designer.id} className="bg-white dark:bg-slate-800 rounded-lg shadow-md p-6 hover:shadow-lg transition border border-slate-200 dark:border-slate-700">
+                {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
                 <div className="flex items-start justify-between mb-4">
                   <div>
                     <h3 className="text-xl font-bold text-slate-900 dark:text-white">

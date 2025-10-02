@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import { Header } from '../../components/Header'
 
 export default function DesignerDashboard() {
@@ -33,7 +32,7 @@ export default function DesignerDashboard() {
           <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">My Packages</h2>
           <div className="bg-white dark:bg-slate-800 rounded-lg shadow-md p-6 border border-slate-200 dark:border-slate-700">
             <p className="text-slate-600 dark:text-slate-400 mb-4">
-              You haven't created any packages yet. Create your service packages to start
+              You haven&apos;t created any packages yet. Create your service packages to start
               receiving client inquiries.
             </p>
             <button className="bg-blue-600 dark:bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-700 dark:hover:bg-blue-600">

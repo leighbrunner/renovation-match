@@ -9,7 +9,7 @@ export async function GET(request: NextRequest) {
     const designerId = searchParams.get('designerId')
     const type = searchParams.get('type')
 
-    const where: any = { active: true }
+    const where: Record<string, unknown> = { active: true }
 
     if (designerId) {
       where.designerId = designerId

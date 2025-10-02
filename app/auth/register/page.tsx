@@ -56,8 +56,8 @@ export default function RegisterPage() {
       } else {
         router.push('/dashboard/client')
       }
-    } catch (err: any) {
-      setError(err.message)
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Registration failed')
     } finally {
       setLoading(false)
     }

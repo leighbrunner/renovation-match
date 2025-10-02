@@ -246,21 +246,21 @@ export default function Home() {
             <div className="bg-white dark:bg-slate-700 p-6 rounded-xl shadow-sm">
               <div className="text-yellow-400 text-xl mb-2">★★★★★</div>
               <p className="text-slate-700 dark:text-slate-300 mb-3 italic">
-                "Finally, someone who gets that I don't have time to visit 12 tile shops. Sarah nailed it in one meeting."
+                &quot;Finally, someone who gets that I don&apos;t have time to visit 12 tile shops. Sarah nailed it in one meeting.&quot;
               </p>
               <p className="text-slate-900 dark:text-white font-semibold">— Jessica M., Product Manager</p>
             </div>
             <div className="bg-white dark:bg-slate-700 p-6 rounded-xl shadow-sm">
               <div className="text-yellow-400 text-xl mb-2">★★★★★</div>
               <p className="text-slate-700 dark:text-slate-300 mb-3 italic">
-                "Transparent pricing, no upsells. Michael stayed on budget and the bathroom is gorgeous."
+                &quot;Transparent pricing, no upsells. Michael stayed on budget and the bathroom is gorgeous.&quot;
               </p>
               <p className="text-slate-900 dark:text-white font-semibold">— David L., Consultant</p>
             </div>
             <div className="bg-white dark:bg-slate-700 p-6 rounded-xl shadow-sm">
               <div className="text-yellow-400 text-xl mb-2">★★★★★</div>
               <p className="text-slate-700 dark:text-slate-300 mb-3 italic">
-                "Best investment ever. Emma handled everything while I focused on work. Zero stress!"
+                &quot;Best investment ever. Emma handled everything while I focused on work. Zero stress!&quot;
               </p>
               <p className="text-slate-900 dark:text-white font-semibold">— Rachel K., Lawyer</p>
             </div>

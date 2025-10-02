@@ -9,7 +9,7 @@ export async function GET(request: NextRequest) {
     const specialty = searchParams.get('specialty')
     const minRating = searchParams.get('minRating')
 
-    const where: any = {}
+    const where: Record<string, unknown> = {}
 
     if (location) {
       where.location = { contains: location, mode: 'insensitive' }

@@ -39,8 +39,8 @@ export default function LoginPage() {
       } else {
         router.push('/dashboard/client')
       }
-    } catch (err: any) {
-      setError(err.message)
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Login failed')
     } finally {
       setLoading(false)
     }
@@ -98,7 +98,7 @@ export default function LoginPage() {
           </form>
 
           <p className="mt-6 text-center text-slate-600 dark:text-slate-400">
-            Don't have an account?{' '}
+            Don&apos;t have an account?{' '}
             <Link href="/auth/register" className="text-blue-600 dark:text-blue-400 hover:underline">
               Register
             </Link>

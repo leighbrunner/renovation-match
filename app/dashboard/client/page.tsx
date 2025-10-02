@@ -35,7 +35,7 @@ export default function ClientDashboard() {
         <div className="mt-12 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-6">
           <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">Welcome to RenovateMatch!</h2>
           <p className="text-slate-700 dark:text-slate-300 mb-4">
-            You're ready to start your renovation journey. Browse our vetted designers,
+            You&apos;re ready to start your renovation journey. Browse our vetted designers,
             compare packages, and find the perfect match for your project.
           </p>
           <Link
