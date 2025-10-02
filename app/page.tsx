@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { ThemeToggle } from './components/ThemeToggle'
 
 export default function Home() {
@@ -77,25 +78,29 @@ export default function Home() {
             <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-2xl overflow-hidden border border-slate-200 dark:border-slate-700">
               <div className="grid grid-cols-2">
                 {/* Before */}
-                <div className="relative bg-gradient-to-br from-slate-400 via-slate-500 to-slate-600 h-64 flex items-center justify-center">
-                  <div className="absolute top-4 left-4 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-bold">
+                <div className="relative h-64 overflow-hidden">
+                  <Image
+                    src="/images/transformations/kitchen-before.jpg"
+                    alt="Outdated 1990s kitchen with dark cabinets"
+                    fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    className="object-cover"
+                  />
+                  <div className="absolute top-4 left-4 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-bold shadow-lg">
                     BEFORE
-                  </div>
-                  <div className="text-center text-white p-6">
-                    <div className="text-5xl mb-3">🍳</div>
-                    <p className="text-sm opacity-90">Outdated 1990s kitchen</p>
-                    <p className="text-xs opacity-75 mt-2">Dark cabinets, worn counters</p>
                   </div>
                 </div>
                 {/* After */}
-                <div className="relative bg-gradient-to-br from-blue-50 via-white to-blue-100 h-64 flex items-center justify-center">
-                  <div className="absolute top-4 right-4 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-bold">
+                <div className="relative h-64 overflow-hidden">
+                  <Image
+                    src="/images/transformations/kitchen-after.jpg"
+                    alt="Modern bright kitchen with white cabinets"
+                    fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    className="object-cover"
+                  />
+                  <div className="absolute top-4 right-4 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-bold shadow-lg">
                     AFTER
-                  </div>
-                  <div className="text-center text-slate-800 p-6">
-                    <div className="text-5xl mb-3">✨</div>
-                    <p className="text-sm font-semibold">Modern culinary haven</p>
-                    <p className="text-xs text-slate-600 mt-2">White shaker cabinets, quartz counters</p>
                   </div>
                 </div>
               </div>
@@ -115,25 +120,29 @@ export default function Home() {
             <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-2xl overflow-hidden border border-slate-200 dark:border-slate-700">
               <div className="grid grid-cols-2">
                 {/* Before */}
-                <div className="relative bg-gradient-to-br from-amber-700 via-amber-800 to-amber-900 h-64 flex items-center justify-center">
-                  <div className="absolute top-4 left-4 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-bold">
+                <div className="relative h-64 overflow-hidden">
+                  <Image
+                    src="/images/transformations/bathroom-before.jpg"
+                    alt="Cramped 1980s bathroom with beige tiles"
+                    fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    className="object-cover"
+                  />
+                  <div className="absolute top-4 left-4 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-bold shadow-lg">
                     BEFORE
-                  </div>
-                  <div className="text-center text-white p-6">
-                    <div className="text-5xl mb-3">🚿</div>
-                    <p className="text-sm opacity-90">Cramped 80s bathroom</p>
-                    <p className="text-xs opacity-75 mt-2">Beige tiles, poor lighting</p>
                   </div>
                 </div>
                 {/* After */}
-                <div className="relative bg-gradient-to-br from-slate-100 via-blue-50 to-slate-200 h-64 flex items-center justify-center">
-                  <div className="absolute top-4 right-4 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-bold">
+                <div className="relative h-64 overflow-hidden">
+                  <Image
+                    src="/images/transformations/bathroom-after.jpg"
+                    alt="Modern spa-like bathroom with subway tiles"
+                    fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    className="object-cover"
+                  />
+                  <div className="absolute top-4 right-4 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-bold shadow-lg">
                     AFTER
-                  </div>
-                  <div className="text-center text-slate-800 p-6">
-                    <div className="text-5xl mb-3">🛁</div>
-                    <p className="text-sm font-semibold">Spa-like retreat</p>
-                    <p className="text-xs text-slate-600 mt-2">Subway tiles, rainfall shower, natural light</p>
                   </div>
                 </div>
               </div>
@@ -152,23 +161,53 @@ export default function Home() {
 
           {/* Additional Small Showcases */}
           <div className="grid md:grid-cols-3 gap-6">
-            <div className="bg-gradient-to-br from-emerald-50 to-teal-100 dark:from-emerald-900/20 dark:to-teal-900/20 p-6 rounded-xl border-2 border-emerald-200 dark:border-emerald-800">
-              <div className="text-3xl mb-3">🏠</div>
-              <h4 className="font-bold text-slate-900 dark:text-white mb-2">Powder Room Glow-Up</h4>
-              <p className="text-slate-700 dark:text-slate-300 text-sm mb-2">Bold wallpaper + brass fixtures = instant luxury</p>
-              <p className="text-emerald-700 dark:text-emerald-400 font-semibold text-sm">$2,800 transformation</p>
+            <div className="bg-white dark:bg-slate-800 rounded-xl shadow-lg overflow-hidden border-2 border-emerald-200 dark:border-emerald-800">
+              <div className="relative h-48 overflow-hidden">
+                <Image
+                  src="/images/transformations/powder-room.jpg"
+                  alt="Powder room with bold wallpaper and brass fixtures"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                  className="object-cover"
+                />
+              </div>
+              <div className="p-4">
+                <h4 className="font-bold text-slate-900 dark:text-white mb-2">Powder Room Glow-Up</h4>
+                <p className="text-slate-700 dark:text-slate-300 text-sm mb-2">Bold wallpaper + brass fixtures = instant luxury</p>
+                <p className="text-emerald-700 dark:text-emerald-400 font-semibold text-sm">$2,800 transformation</p>
+              </div>
             </div>
-            <div className="bg-gradient-to-br from-purple-50 to-pink-100 dark:from-purple-900/20 dark:to-pink-900/20 p-6 rounded-xl border-2 border-purple-200 dark:border-purple-800">
-              <div className="text-3xl mb-3">👔</div>
-              <h4 className="font-bold text-slate-900 dark:text-white mb-2">Master Suite Refresh</h4>
-              <p className="text-slate-700 dark:text-slate-300 text-sm mb-2">Calming coastal vibes for better sleep</p>
-              <p className="text-purple-700 dark:text-purple-400 font-semibold text-sm">$4,500 makeover</p>
+            <div className="bg-white dark:bg-slate-800 rounded-xl shadow-lg overflow-hidden border-2 border-purple-200 dark:border-purple-800">
+              <div className="relative h-48 overflow-hidden">
+                <Image
+                  src="/images/transformations/master-suite.jpg"
+                  alt="Calming coastal master suite bedroom"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                  className="object-cover"
+                />
+              </div>
+              <div className="p-4">
+                <h4 className="font-bold text-slate-900 dark:text-white mb-2">Master Suite Refresh</h4>
+                <p className="text-slate-700 dark:text-slate-300 text-sm mb-2">Calming coastal vibes for better sleep</p>
+                <p className="text-purple-700 dark:text-purple-400 font-semibold text-sm">$4,500 makeover</p>
+              </div>
             </div>
-            <div className="bg-gradient-to-br from-orange-50 to-amber-100 dark:from-orange-900/20 dark:to-amber-900/20 p-6 rounded-xl border-2 border-orange-200 dark:border-orange-800">
-              <div className="text-3xl mb-3">☕</div>
-              <h4 className="font-bold text-slate-900 dark:text-white mb-2">Breakfast Nook Magic</h4>
-              <p className="text-slate-700 dark:text-slate-300 text-sm mb-2">Built-in seating + pendant lighting perfection</p>
-              <p className="text-orange-700 dark:text-orange-400 font-semibold text-sm">$3,200 upgrade</p>
+            <div className="bg-white dark:bg-slate-800 rounded-xl shadow-lg overflow-hidden border-2 border-orange-200 dark:border-orange-800">
+              <div className="relative h-48 overflow-hidden">
+                <Image
+                  src="/images/transformations/breakfast-nook.jpg"
+                  alt="Modern breakfast nook with built-in seating"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                  className="object-cover"
+                />
+              </div>
+              <div className="p-4">
+                <h4 className="font-bold text-slate-900 dark:text-white mb-2">Breakfast Nook Magic</h4>
+                <p className="text-slate-700 dark:text-slate-300 text-sm mb-2">Built-in seating + pendant lighting perfection</p>
+                <p className="text-orange-700 dark:text-orange-400 font-semibold text-sm">$3,200 upgrade</p>
+              </div>
             </div>
           </div>
         </div>
